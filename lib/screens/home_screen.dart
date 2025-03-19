@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/custom_scorebar.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -22,70 +24,19 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               flex: 1,
               child: Container(
-                color: Colors.yellow,
+                // color: Colors.yellow,
                 height: size.height,
                 child: Column(
                   children: [
-                    SizedBox(height: size.height * 0.02),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("ความหิว "),
-                        Container(
-                          height: 20,
-                          width: size.width * 0.7,
-                          child: LinearProgressIndicator(
-                            value: 0.5,
-                            backgroundColor: Colors.grey[300],
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.blue,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: size.height * 0.01),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("พลังงาน "),
-                        Container(
-                          height: 20,
-                          width: size.width * 0.7,
-                          child: LinearProgressIndicator(
-                            value: 0.5,
-                            backgroundColor: Colors.grey[300],
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.blue,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: size.height * 0.01),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("ความสุข "),
-                        Container(
-                          height: 20,
-                          width: size.width * 0.7,
-                          child: LinearProgressIndicator(
-                            value: 0.5,
-                            backgroundColor: Colors.grey[300],
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.blue,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    HappyScoreBar(),
+                    HungryScoreBar(),
+                    StaminaScoreBar()
                   ],
                 ),
               ),
             ),
             Expanded(
-              flex: 5,
+              flex: 4,
               child: Container(color: Colors.red, height: size.height, child: Image.network("https://i.pinimg.com/474x/da/c3/d1/dac3d1efce902fefe38a9288e81d3cec.jpg"),),
             ),
             Expanded(
