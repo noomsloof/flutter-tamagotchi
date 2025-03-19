@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tamagotchi/screens/home_screen.dart';
+import 'package:tamagotchi/providers/PetProvider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => PetProvider(),
+      child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
