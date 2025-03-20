@@ -18,4 +18,9 @@ class PetProvider with ChangeNotifier{
     pet.rest();
     notifyListeners();
   }
+
+  void animationAction(){
+    pet.actionAnimation();
+    notifyListeners();
+  }
 }

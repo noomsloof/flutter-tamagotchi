@@ -1,4 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tamagotchi/providers/PetProvider.dart';
+import 'package:tamagotchi/widgets/animation_action.dart';
 import 'package:tamagotchi/widgets/custom_button.dart';
 
 import '../widgets/custom_scorebar.dart';
@@ -11,10 +16,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
+    final petProvider = Provider.of<PetProvider>(context);
 
     return SafeArea(
       child: Scaffold(
@@ -41,17 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               flex: 4,
               child: Container(
-                color: Colors.red,
-                height: size.height,
-                child: Image.network(
-                  "https://i.pinimg.com/474x/da/c3/d1/dac3d1efce902fefe38a9288e81d3cec.jpg",
-                ),
+                child: AnimationAction(),
               ),
             ),
             Expanded(
               flex: 1,
               child: Container(
-                color: Colors.blue,
+                // color: Colors.blue,
                 height: size.height,
                 child: Row(
                   spacing: size.width / 10,
