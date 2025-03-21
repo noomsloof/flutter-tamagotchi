@@ -1,8 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tamagotchi/providers/PetProvider.dart';
 import 'package:tamagotchi/widgets/animation_action.dart';
 import 'package:tamagotchi/widgets/custom_button.dart';
 
@@ -20,7 +16,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final petProvider = Provider.of<PetProvider>(context);
 
     return SafeArea(
       child: Scaffold(
