@@ -13,8 +13,7 @@ class _AnimationActionState extends State<AnimationAction> {
   @override
   Widget build(BuildContext context) {
     final petProvider = Provider.of<PetProvider>(context);
-    String actionState = petProvider.pet.petAction;
 
-    return Container(child: Image.asset(actionState), width: 300,);
+    return Container(child: Image.asset(petProvider.animationAction()), width: 300,);
   }
 }
