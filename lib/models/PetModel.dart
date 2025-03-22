@@ -1,3 +1,5 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 class PetModel {
   late int energy;
   late int hunger;
@@ -7,12 +9,27 @@ class PetModel {
     this.energy = 100,
     this.hunger = 50,
     this.happiness = 80,
-  });
+  }){_loadPetData();}
+
+  void _loadPetData() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    energy = prefs.getInt('energy') ?? 100;
+    hunger = prefs.getInt('hunger') ?? 50;
+    happiness = prefs.getInt('happiness') ?? 80;
+  }
+
+    void _savePetdata() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('energy', energy);
+    prefs.setInt('hunger', hunger);
+    prefs.setInt('happiness', happiness);
+  }
 
   bool eat() {
     if (energy > 10 && hunger != 100) {
       hunger = (hunger + 20).clamp(0, 100);
       energy = (energy - 10).clamp(0, 100);
+      _savePetdata();
       return true;
     }
     return false;
@@ -22,6 +39,7 @@ class PetModel {
     if (energy > 10 && happiness != 100) {
       happiness = (happiness + 15).clamp(0, 100);
       energy = (energy - 10).clamp(0, 100);
+      _savePetdata();
     return true;
     }
     return false;
@@ -33,6 +51,7 @@ class PetModel {
         happiness = (happiness - 15).clamp(0, 100);
         hunger = (hunger - 20).clamp(0, 100);
         energy = (energy + 30).clamp(0, 100);
+        _savePetdata();
         return true;
       }
     return false;

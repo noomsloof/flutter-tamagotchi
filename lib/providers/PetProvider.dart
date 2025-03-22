@@ -50,6 +50,7 @@ class PetProvider with ChangeNotifier {
   }
 
   String defultAnimation() {
+    
     if (pet.happiness < 15 || pet.hunger < 15) {
       return 'assets/images/nomal_low.png';
     } else if (pet.happiness < 85 || pet.hunger < 85) {
