@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PetModel {
+class PetModel extends ChangeNotifier {
   late int energy;
   late int hunger;
   late int happiness;
@@ -11,11 +12,12 @@ class PetModel {
     this.happiness = 80,
   }){_loadPetData();}
 
-  void _loadPetData() async{
+  Future<void> _loadPetData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     energy = prefs.getInt('energy') ?? 100;
     hunger = prefs.getInt('hunger') ?? 50;
     happiness = prefs.getInt('happiness') ?? 80;
+    notifyListeners(); // ✅ อัปเดต UI หลังจากโหลดเสร็จ
   }
 
     void _savePetdata() async{
