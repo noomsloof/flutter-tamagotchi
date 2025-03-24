@@ -12,11 +12,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -39,12 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Expanded(
-              flex: 4,
-              child: Container(
-                child: AnimationAction(),
-              ),
-            ),
+            Expanded(flex: 4, child: Container(child: AnimationAction())),
             Expanded(
               flex: 1,
               child: Container(

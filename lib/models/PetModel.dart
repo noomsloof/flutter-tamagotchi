@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tamagotchi/main.dart';
+// import 'package:tamagotchi/main.dart';
 
 class PetModel extends ChangeNotifier {
   late int energy;
@@ -14,7 +14,9 @@ class PetModel extends ChangeNotifier {
     this.hunger = 50,
     this.happiness = 80,
     this.petActions = 'assets/images/nomal.gif',
-  }){_loadPetData();}
+  }) {
+    _loadPetData();
+  }
 
   Future<void> _loadPetData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -24,27 +26,42 @@ class PetModel extends ChangeNotifier {
     petActions = prefs.getString('petActions') ?? 'assets/images/nomal.gif';
     notifyListeners();
 
-    if(happiness < 20 || hunger < 20){
-      _showPetNotification();
-    }
+    // if (happiness < 20 || hunger < 20) {
+    //   _showPetNotification();
+    // }
   }
 
-  Future<void> _showPetNotification() async{
-    const AndroidNotificationDetails androidDetails = AndroidNotificationDetails('low_channel', 'Low Notifications',channelDescription: 'Notifications for low.',importance: Importance.high,priority: Priority.high);
-    const NotificationDetails notificationDetails = NotificationDetails(android: androidDetails);
-    await flutterLocalNotificationsPlugin.show(0,'Low!','Your pet is low now.',notificationDetails, payload:'low_payload');
+  // Future<void> _showPetNotification() async {
+  //   const AndroidNotificationDetails androidDetails =
+  //       AndroidNotificationDetails(
+  //         'low_channel',
+  //         'Low Notifications',
+  //         channelDescription: 'Notifications for low.',
+  //         importance: Importance.high,
+  //         priority: Priority.high,
+  //       );
+  //   const NotificationDetails notificationDetails = NotificationDetails(
+  //     android: androidDetails,
+  //   );
+  //   await flutterLocalNotificationsPlugin.show(
+  //     0,
+  //     'จะตายแล้ว!!.',
+  //     'สัตว์เลี้ยงจะตายแล้ว!!. มาดูเร็ว',
+  //     notificationDetails,
+  //     payload: 'low_payload',
+  //   );
+  // }
+
+  void savedata() {
+    _savePetdata();
   }
 
-  void _savePetdata() async{
+  void _savePetdata() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt('energy', energy);
     prefs.setInt('hunger', hunger);
     prefs.setInt('happiness', happiness);
     prefs.setString('petActions', petActions);
-  }
-
-  void savedata(){
-    _savePetdata();
   }
 
   bool eat() {
@@ -62,7 +79,7 @@ class PetModel extends ChangeNotifier {
       happiness = (happiness + 15).clamp(0, 100);
       energy = (energy - 10).clamp(0, 100);
       _savePetdata();
-    return true;
+      return true;
     }
     return false;
   }
@@ -76,7 +93,7 @@ class PetModel extends ChangeNotifier {
         _savePetdata();
         return true;
       }
-    return false;
+      return false;
     }
     return false;
   }

@@ -1,27 +1,21 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:tamagotchi/screens/home_screen.dart';
 import 'package:tamagotchi/providers/PetProvider.dart';
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+// final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-Future<void> main() async {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
 
-  WidgetsFlutterBinding.ensureInitialized();
+  // const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('app_icon');
+  // final InitializationSettings initializationSettings = InitializationSettings(android: initializationSettingsAndroid);
 
-  const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('app_icon');
-  final InitializationSettings initializationSettings = InitializationSettings(android: initializationSettingsAndroid);
-
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  // await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => PetProvider(),
-      child: MyApp(),
-    )
+    ChangeNotifierProvider(create: (context) => PetProvider(), child: MyApp()),
   );
 }
 
