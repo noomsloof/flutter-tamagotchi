@@ -6,8 +6,6 @@ import 'package:tamagotchi/models/PetModel.dart';
 class PetProvider with ChangeNotifier {
   PetModel pet = PetModel();
 
-  String petActions = 'assets/images/nomal.gif';
-
   void feedPet() {
     if (pet.eat() == true) {
       animationAction(action: "eat");
@@ -35,25 +33,26 @@ class PetProvider with ChangeNotifier {
   void animationAction({String action = "defult"}) {
     switch (action) {
       case "defult":
-        petActions = defultAnimation();
+        pet.petActions = defaultAnimation();
         break;
       case "eat":
-        petActions = 'assets/images/eat.gif';
+        pet.petActions = 'assets/images/eat.gif';
         break;
       case "play":
-        petActions = 'assets/images/play.gif';
+        pet.petActions = 'assets/images/play.gif';
         break;
       case "rest":
-        petActions = 'assets/images/rest.gif';
+        pet.petActions = 'assets/images/rest.gif';
         break;
     }
+    pet.savedata();
+    notifyListeners();
   }
 
-  String defultAnimation() {
-    
-    if (pet.happiness < 15 || pet.hunger < 15) {
+  String defaultAnimation() {
+    if (pet.happiness < 15 && pet.hunger < 15) {
       return 'assets/images/nomal_low.png';
-    } else if (pet.happiness < 85 || pet.hunger < 85) {
+    } else if (pet.happiness < 85 && pet.hunger < 85) {
       return 'assets/images/nomal.gif';
     } else {
       return 'assets/images/nomal_high.gif';
