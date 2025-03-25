@@ -1,15 +1,24 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tamagotchi/main.dart';
 import 'package:tamagotchi/models/PetModel.dart';
 
 class PetProvider with ChangeNotifier {
   PetModel pet = PetModel();
 
+  PetProvider() {
+    pet = PetModel();
+    _loadPetData();
+  }
+
   void feedPet() {
     if (pet.eat() == true) {
       animationAction(action: "eat");
       _resetToActionAnimation(2);
+      _savePetdata();
       notifyListeners();
     }
   }
@@ -18,6 +27,7 @@ class PetProvider with ChangeNotifier {
     if (pet.play() == true) {
       animationAction(action: "play");
       _resetToActionAnimation(3);
+      _savePetdata();
       notifyListeners();
     }
   }
@@ -26,6 +36,7 @@ class PetProvider with ChangeNotifier {
     if (pet.rest() == true) {
       animationAction(action: "rest");
       _resetToActionAnimation(3);
+      _savePetdata();
       notifyListeners();
     }
   }
@@ -45,7 +56,7 @@ class PetProvider with ChangeNotifier {
         pet.petActions = 'assets/images/rest.gif';
         break;
     }
-    pet.savedata();
+    _savePetdata();
     notifyListeners();
   }
 
@@ -64,5 +75,56 @@ class PetProvider with ChangeNotifier {
       notifyListeners();
       animationAction();
     });
+  }
+
+  Future<void> _loadPetData() async {
+    print('🔄 กำลังโหลดข้อมูลสัตว์เลี้ยง...');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    pet.energy = prefs.getInt('energy') ?? 100;
+    pet.hunger = prefs.getInt('hunger') ?? 50;
+    pet.happiness = prefs.getInt('happiness') ?? 80;
+    pet.petActions = prefs.getString('petActions') ?? 'assets/images/nomal.gif';
+    print(
+      '✅ โหลดเสร็จ energy: ${pet.energy}, hunger: ${pet.hunger}, happiness: ${pet.happiness}',
+    );
+
+    notifyListeners();
+    print(
+      '✅ หลัง notifyListeners()',
+    );
+
+
+    if (pet.happiness < 20 || pet.hunger < 20) {
+      _showPetNotification();
+    }
+  }
+
+  Future<void> _showPetNotification() async {
+    const AndroidNotificationDetails androidDetails =
+        AndroidNotificationDetails(
+          'low_channel',
+          'Low Notifications',
+          channelDescription: 'Notifications for low.',
+          importance: Importance.high,
+          priority: Priority.high,
+        );
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: androidDetails,
+    );
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'จะตายแล้ว!!.',
+      'สัตว์เลี้ยงจะตายแล้ว!!. มาดูเร็ว',
+      notificationDetails,
+      payload: 'low_payload',
+    );
+  }
+
+  void _savePetdata() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('energy', pet.energy);
+    prefs.setInt('hunger', pet.hunger);
+    prefs.setInt('happiness', pet.happiness);
+    prefs.setString('petActions', pet.petActions);
   }
 }
