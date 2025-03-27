@@ -17,7 +17,7 @@ class PetProvider with ChangeNotifier {
   void feedPet() {
     if (pet.eat() == true) {
       animationAction(action: "eat");
-      _resetToActionAnimation(2);
+      _resetToActionAnimation(4);
       _savePetdata();
       notifyListeners();
     }
@@ -26,7 +26,7 @@ class PetProvider with ChangeNotifier {
   void playWithPet() {
     if (pet.play() == true) {
       animationAction(action: "play");
-      _resetToActionAnimation(3);
+      _resetToActionAnimation(4);
       _savePetdata();
       notifyListeners();
     }
@@ -35,7 +35,7 @@ class PetProvider with ChangeNotifier {
   void rest() {
     if (pet.rest() == true) {
       animationAction(action: "rest");
-      _resetToActionAnimation(3);
+      _resetToActionAnimation(5);
       _savePetdata();
       notifyListeners();
     }
@@ -62,7 +62,7 @@ class PetProvider with ChangeNotifier {
 
   String defaultAnimation() {
     if (pet.happiness < 15 && pet.hunger < 15) {
-      return 'assets/images/nomal_low.png';
+      return 'assets/images/nomal_low.gif';
     } else if (pet.happiness < 85 && pet.hunger < 85) {
       return 'assets/images/nomal.gif';
     } else {

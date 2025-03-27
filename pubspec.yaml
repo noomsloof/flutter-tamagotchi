@@ -62,11 +62,13 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/nomal.gif
-    - assets/images/nomal_low.png
+    - assets/images/nomal_low.gif
     - assets/images/nomal_high.gif
     - assets/images/eat.gif
+    - assets/images/eat1.gif
     - assets/images/play.gif
     - assets/images/rest.gif
+    - assets/images/background.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -14,6 +14,15 @@ class _AnimationActionState extends State<AnimationAction> {
   Widget build(BuildContext context) {
     final petProvider = Provider.of<PetProvider>(context);
     Size size = MediaQuery.of(context).size;
-    return Container(child: Image.asset(petProvider.pet.petActions), width: size.width,);
+    return Container(
+      decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage("assets/images/background.png"),
+        fit: BoxFit.cover,
+      ),
+    ),
+      child: Image.asset(petProvider.pet.petActions, fit: BoxFit.fitWidth),
+      width: size.width,
+    );
   }
 }
