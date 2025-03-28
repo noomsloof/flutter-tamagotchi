@@ -11,51 +11,54 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Center(child: Text("Tamagotchi")),
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Container(
-                // color: Colors.yellow,
-                height: size.height,
-                child: Column(
-                  children: [
-                    HungryScoreBar(),
-                    HappyScoreBar(),
-                    StaminaScoreBar(),
-                  ],
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background_back.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  // color: Colors.yellow,
+                  height: size.height,
+                  child: Column(
+                    children: [
+                      HungryScoreBar(),
+                      HappyScoreBar(),
+                      StaminaScoreBar(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Expanded(flex: 4, child: Container(child: AnimationAction())),
-            Expanded(
-              flex: 1,
-              child: Container(
-                // color: Colors.blue,
-                height: size.height,
-                child: Row(
-                  spacing: size.width / 10,
-                  children: [
-                    SizedBox(),
-                    FeedButton(),
-                    PlayButton(),
-                    RestButton(),
-                    SizedBox(),
-                  ],
+              Expanded(flex: 4, child: Container(child: AnimationAction())),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  // color: Colors.blue,
+                  height: size.height,
+                  child: Row(
+                    spacing: size.width / 10,
+                    children: [
+                      SizedBox(),
+                      FeedButton(),
+                      PlayButton(),
+                      RestButton(),
+                      SizedBox(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

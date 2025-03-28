@@ -16,13 +16,25 @@ class _AnimationActionState extends State<AnimationAction> {
     Size size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
-      image: DecorationImage(
-        image: AssetImage("assets/images/background.png"),
-        fit: BoxFit.cover,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.white, width: 0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            blurRadius: 10,
+            offset: Offset(5, 5),
+          ),
+        ],
+        image: DecorationImage(
+          image: AssetImage("assets/images/background.png"),
+          fit: BoxFit.cover,
+        ),
       ),
-    ),
-      child: Image.asset(petProvider.pet.petActions, fit: BoxFit.fitWidth),
-      width: size.width,
+      child: Transform.scale(
+        scale: 0.7,
+        child: Image.asset(petProvider.pet.petActions, fit: BoxFit.fitWidth,alignment: Alignment.bottomCenter),
+      ),
+      width: size.width * 0.8,
     );
   }
 }

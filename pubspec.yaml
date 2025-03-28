@@ -69,6 +69,7 @@ flutter:
     - assets/images/play.gif
     - assets/images/rest.gif
     - assets/images/background.png
+    - assets/images/background_back.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

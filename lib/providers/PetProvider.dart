@@ -78,20 +78,13 @@ class PetProvider with ChangeNotifier {
   }
 
   Future<void> _loadPetData() async {
-    print('🔄 กำลังโหลดข้อมูลสัตว์เลี้ยง...');
     SharedPreferences prefs = await SharedPreferences.getInstance();
     pet.energy = prefs.getInt('energy') ?? 100;
     pet.hunger = prefs.getInt('hunger') ?? 50;
     pet.happiness = prefs.getInt('happiness') ?? 80;
     pet.petActions = prefs.getString('petActions') ?? 'assets/images/nomal.gif';
-    print(
-      '✅ โหลดเสร็จ energy: ${pet.energy}, hunger: ${pet.hunger}, happiness: ${pet.happiness}',
-    );
 
     notifyListeners();
-    print(
-      '✅ หลัง notifyListeners()',
-    );
 
 
     if (pet.happiness < 20 || pet.hunger < 20) {
