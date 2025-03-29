@@ -43,17 +43,18 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 flex: 2,
                 child: Container(
-                  // color: Colors.blue,
                   height: size.height,
-                  child: Row(
-                    spacing: size.width / 10,
-                    children: [
-                      SizedBox(),
-                      FeedButton(),
-                      PlayButton(),
-                      RestButton(),
-                      SizedBox(),
-                    ],
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        FeedButton(),
+                        FeedDonutButton(),
+                        PlayButton(),
+                        RestButton(),
+                      ],
+                    ),
                   ),
                 ),
               ),

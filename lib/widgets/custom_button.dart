@@ -13,10 +13,66 @@ class _FeedButtonState extends State<FeedButton> {
   @override
   Widget build(BuildContext context) {
     final petProvider = Provider.of<PetProvider>(context);
-    return Expanded(
-      flex: 3,
+    return InkWell(
+      onTap: () => petProvider.feedPet(),
+      borderRadius: BorderRadius.circular(50),
       child: Container(
-        child: FloatingActionButton(onPressed: () => petProvider.feedPet(), child: Text("ให้อาหาร")),
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.pink[100],
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              spreadRadius: 3,
+              blurRadius: 10,
+              offset: Offset(3, 5),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Image.asset('assets/icons/rice.png'),
+        ),
+      ),
+    );
+  }
+}
+
+class FeedDonutButton extends StatefulWidget {
+  const FeedDonutButton({super.key});
+
+  @override
+  State<FeedDonutButton> createState() => _FeedDonutButtonState();
+}
+
+class _FeedDonutButtonState extends State<FeedDonutButton> {
+  @override
+    Widget build(BuildContext context) {
+    final petProvider = Provider.of<PetProvider>(context);
+    return InkWell(
+      onTap: () => petProvider.feedDonutPet(),
+      borderRadius: BorderRadius.circular(50),
+      child: Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.pink[100],
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              spreadRadius: 3,
+              blurRadius: 10,
+              offset: Offset(3, 5),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Image.asset('assets/icons/donut.png'),
+        ),
       ),
     );
   }
@@ -33,10 +89,28 @@ class _PlayButtonState extends State<PlayButton> {
   @override
   Widget build(BuildContext context) {
     final petProvider = Provider.of<PetProvider>(context);
-    return Expanded(
-      flex: 3,
+    return InkWell(
+      onTap: () => petProvider.playWithPet(),
+      borderRadius: BorderRadius.circular(50),
       child: Container(
-        child: FloatingActionButton(onPressed: () => petProvider.playWithPet(), child: Text("เล่น")),
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.pink[100],
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              spreadRadius: 3,
+              blurRadius: 10,
+              offset: Offset(3, 5),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Image.asset('assets/icons/doll.png'),
+        ),
       ),
     );
   }
@@ -53,10 +127,28 @@ class _RestButtonState extends State<RestButton> {
   @override
   Widget build(BuildContext context) {
     final petProvider = Provider.of<PetProvider>(context);
-    return Expanded(
-      flex: 3,
+    return InkWell(
+      onTap: () => petProvider.rest(),
+      borderRadius: BorderRadius.circular(50),
       child: Container(
-        child: FloatingActionButton(onPressed: () => petProvider.rest(), child: Text("พักผ่อน")),
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.pink[100],
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              spreadRadius: 3,
+              blurRadius: 10,
+              offset: Offset(3, 5),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Image.asset('assets/icons/sleepy.png'),
+        ),
       ),
     );
   }

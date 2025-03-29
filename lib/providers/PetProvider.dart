@@ -23,6 +23,15 @@ class PetProvider with ChangeNotifier {
     }
   }
 
+  void feedDonutPet() {
+    if (pet.eatdonut() == true) {
+      animationAction(action: "eatdonut");
+      _resetToActionAnimation(4);
+      _savePetdata();
+      notifyListeners();
+    }
+  }
+
   void playWithPet() {
     if (pet.play() == true) {
       animationAction(action: "play");
@@ -49,6 +58,9 @@ class PetProvider with ChangeNotifier {
       case "eat":
         pet.petActions = 'assets/images/eat.gif';
         break;
+      case "eatdonut":
+        pet.petActions = 'assets/images/eat1.gif';
+        break;
       case "play":
         pet.petActions = 'assets/images/play.gif';
         break;
@@ -61,12 +73,12 @@ class PetProvider with ChangeNotifier {
   }
 
   String defaultAnimation() {
-    if (pet.happiness < 15 && pet.hunger < 15) {
-      return 'assets/images/nomal_low.gif';
-    } else if (pet.happiness < 85 && pet.hunger < 85) {
-      return 'assets/images/nomal.gif';
+    if (pet.happiness < 20 && pet.hunger < 20) {
+      return 'assets/images/normal_low.gif';
+    } else if (pet.happiness < 80 && pet.hunger < 80) {
+      return 'assets/images/normal.gif';
     } else {
-      return 'assets/images/nomal_high.gif';
+      return 'assets/images/normal_high.gif';
     }
   }
 
@@ -82,7 +94,7 @@ class PetProvider with ChangeNotifier {
     pet.energy = prefs.getInt('energy') ?? 100;
     pet.hunger = prefs.getInt('hunger') ?? 50;
     pet.happiness = prefs.getInt('happiness') ?? 80;
-    pet.petActions = prefs.getString('petActions') ?? 'assets/images/nomal.gif';
+    pet.petActions = prefs.getString('petActions') ?? 'assets/images/normal.gif';
 
     notifyListeners();
 
